@@ -1,0 +1,55 @@
+
+global:
+  scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+rule_files:
+scrape_configs:
+
+  - job_name: 'blackbox'
+    metrics_path: /probe
+    params:
+        module: [http_2xx]
+    static_configs:
+        - targets:
+            - https://kpob.bojonegorokab.go.id
+            - https://e-office.bojonegorokab.go.id
+            - https://cc.bojonegorokab.go.id
+            - https://sid.bojonegorokab.go.id
+            - https://data.bojonegorokab.go.id
+            - https://lawancorona.bojonegorokab.go.id
+            - https://plasma.bojonegorokab.go.id
+            - https://sibantu.bojonegorokab.go.id
+            - https://sanduk.bojonegorokab.go.id
+            - https://meet.bojonegorokab.go.id
+            - https://git.bojonegorokab.go.id
+            - https://simpan.bojonegorokab.go.id
+            - https://simaniz.bojonegorokab.go.id
+            - https://mpp.bojonegorokab.go.id
+            - https://kpm.bojonegorokab.go.id
+            - https://esapibro.bojonegorokab.go.id
+            - https://sukirno.bojonegorokab.go.id
+            - https://etle.bojonegorokab.go.id
+            - https://musrenbang.bojonegorokab.go.id
+            - https://zi.bojonegorokab.go.id
+            - https://sakip.bojonegorokab.go.id
+            - https://jdih.bojonegorokab.go.id
+            - https://simantap.bojonegorokab.go.id
+            - https://sinjab.bojonegorokab.go.id
+            - https://absensi-online.bojonegorokab.go.id
+            - https://mail.bojonegorokab.go.id
+            - https://pantau.bojonegorokab.go.id
+
+
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: 10.0.44.217:9115  # The blackbox exporter's real hostname:port.
+
