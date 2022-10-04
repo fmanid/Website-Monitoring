@@ -1,4 +1,4 @@
-
+ipconfiipco
 global:
   scrape_interval: 15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
   evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
@@ -51,5 +51,5 @@ scrape_configs:
       - source_labels: [__param_target]
         target_label: instance
       - target_label: __address__
-        replacement: 10.0.44.217:9115  # The blackbox exporter's real hostname:port.
+        replacement: 103.87.16.112:9115  # The blackbox exporter's real hostname:port.
 
